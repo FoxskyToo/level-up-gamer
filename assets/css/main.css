@@ -1,0 +1,44 @@
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.text-secondary {
+    color: var(--color-texto-secundario) !important;
+}
+
+.text-levelup-blue {
+    color: var(--color-azul);
+}
+
+.text-levelup-green {
+    color: var(--color-verde);
+}
+
+.btn-levelup {
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
+    color: #000000;
+    font-weight: 600;
+}
+
+.btn-levelup:hover {
+    background-color: var(--color-azul);
+    border-color: var(--color-azul);
+    color: #ffffff;
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
