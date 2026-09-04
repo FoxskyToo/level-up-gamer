@@ -169,6 +169,24 @@ h6,
     color: var(--color-verde);
 }
 
+/* =========================
+   TITULOS DE SECCION
+========================= */
+
+.section-title {
+    color: var(--color-azul);
+    font-weight: 600;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 3px;
+    margin-top: 10px;
+    background-color: var(--color-verde);
+    border-radius: 10px;
+}
 
 /* =========================
    PANELES
