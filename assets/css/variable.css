@@ -1,7 +1,19 @@
 :root {
+    /* Fondos */
     --color-fondo: #000000;
+    --color-superficie: #0d0d0d;
+    --color-superficie-hover: #151515;
+
+    /* Acentos */
     --color-azul: #1E90FF;
     --color-verde: #39FF14;
+
+    /* Texto */
     --color-texto: #FFFFFF;
     --color-texto-secundario: #D3D3D3;
+    --color-texto-oscuro: #000000;
+
+    /* Bordes */
+    --color-borde: #2b2b2b;
+    --color-borde-suave: #3a3a3a;
 }
