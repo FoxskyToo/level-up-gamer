@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Level-Up Gamer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul: #1E90FF;
+            --verde: #39FF14;
+        }
+        body { background:#000; color:#fff; font-family:'Roboto',sans-serif; }
+        h1,h2,h3,.navbar-brand { font-family:'Orbitron',sans-serif; }
+        .navbar { background:#050505; border-bottom:1px solid #222; }
+        .navbar-brand { color:var(--verde)!important; }
+        .nav-link { color:#D3D3D3!important; }
+        .nav-link:hover,.nav-link.active { color:var(--azul)!important; }
+        .panel { background:#0d0d0d; border:1px solid #252525; border-radius:15px; }
+        .form-control,.form-select { background:#111; color:#fff; border-color:#333; }
+        .form-control:focus,.form-select:focus { background:#111; color:#fff; border-color:var(--azul); }
+        .btn-levelup { background:var(--azul); color:#fff; border:0; }
+        .btn-neon { background:var(--verde); color:#000; border:0; font-weight:700; }
+        .table { --bs-table-bg:#0d0d0d; --bs-table-color:#fff; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="catalogo.html">LEVEL-UP GAMER</a>
+        <div>
+            <a href="catalogo.html" class="btn btn-outline-light btn-sm">Volver al catálogo</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1>Gestión de Productos</h1>
+            <p class="text-secondary">Agrega productos que aparecerán automáticamente en catalogo.html.</p>
+        </div>
+    </div>
+
+    <div class="panel p-4 mb-5">
+        <h3 class="mb-4">Agregar producto</h3>
+
+        <form id="formProducto">
+            <div class="row g-3">
+
+                <div class="col-md-4">
+                    <label class="form-label">Código</label>
+                    <input type="text" id="codigo" class="form-control" placeholder="Ej: MS001" required>
+                </div>
+
+                <div class="col-md-8">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" placeholder="Ej: Mouse Gamer Logitech G502 HERO" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Categoría</label>
+                    <select id="categoria" class="form-select" required>
+                        <option value="">Seleccionar...</option>
+                        <option>Juegos de Mesa</option>
+                        <option>Accesorios</option>
+                        <option>Consolas</option>
+                        <option>Computadores Gamers</option>
+                        <option>Sillas Gamers</option>
+                        <option>Mouse</option>
+                        <option>Mousepad</option>
+                        <option>Poleras Personalizadas</option>
+                        <option>Polerones Gamers Personalizados</option>
+                        <option>Servicio Técnico</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Precio CLP</label>
+                    <input type="number" id="precio" class="form-control" min="0" required>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">URL de imagen (opcional)</label>
+                    <input type="url" id="imagen" class="form-control" placeholder="https://...">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Descripción</label>
+                    <textarea id="descripcion" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-neon" type="submit">
+                        Guardar producto
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="panel p-4">
+        <h3 class="mb-4">Productos registrados</h3>
+
+        <div class="table-responsive">
+            <table class="table table-dark align-middle">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaProductos"></tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<script>
+    let productos = JSON.parse(localStorage.getItem("productosLevelUp")) || [];
+
+    function guardar() {
+        localStorage.setItem(
+            "productosLevelUp",
+            JSON.stringify(productos)
+        );
+    }
+
+    function formatoPrecio(precio) {
+        return Number(precio).toLocaleString("es-CL");
+    }
+
+    function mostrarProductos() {
+        const tabla = document.getElementById("tablaProductos");
+
+        if (productos.length === 0) {
+            tabla.innerHTML = `
+                <tr>
+                    <td colspan="5" class="text-center text-secondary">
+                        No hay productos registrados.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        tabla.innerHTML = productos.map((producto, index) => `
+            <tr>
+                <td>${producto.codigo}</td>
+                <td>${producto.nombre}</td>
+                <td>${producto.categoria}</td>
+                <td>$${formatoPrecio(producto.precio)}</td>
+                <td>
+                    <button class="btn btn-sm btn-danger"
+                            onclick="eliminarProducto(${index})">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        `).join("");
+    }
+
+    document.getElementById("formProducto").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const codigo = document.getElementById("codigo").value.trim();
+
+        if (productos.some(p => p.codigo === codigo)) {
+            alert("Ya existe un producto con ese código.");
+            return;
+        }
+
+        const producto = {
+            codigo: codigo,
+            nombre: document.getElementById("nombre").value.trim(),
+            categoria: document.getElementById("categoria").value,
+            precio: Number(document.getElementById("precio").value),
+            imagen: document.getElementById("imagen").value.trim(),
+            descripcion: document.getElementById("descripcion").value.trim()
+        };
+
+        productos.push(producto);
+        guardar();
+
+        this.reset();
+        mostrarProductos();
+
+        alert("Producto agregado correctamente. Ya está disponible en el catálogo.");
+    });
+
+    function eliminarProducto(index) {
+        if (!confirm("¿Eliminar este producto?")) return;
+
+        productos.splice(index, 1);
+        guardar();
+        mostrarProductos();
+    }
+
+    mostrarProductos();
+</script>
+
+</body>
+</html>
