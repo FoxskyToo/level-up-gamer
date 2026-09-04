@@ -137,31 +137,34 @@
                     </ul>
 
 
-                    <div class="d-flex gap-2">
+                    <div class="d-flex align-items-center gap-2">
 
-                        <a
-                            href="login.html"
-                            class="btn btn-outline-light">
+                        <!-- Usuario sin sesión -->
+                        <div id="accionesInvitado" class="d-flex gap-2">
+                            <a href="login.html" class="btn btn-outline-light">
+                                Iniciar sesión
+                            </a>
+                        </div>
 
-                            Iniciar sesión
-
-                        </a>
-
-
-                        <a
-                            href="carrito.html"
-                            class="btn btn-levelup">
-
-                            Carrito
+                        <!-- Usuario con sesión -->
+                        <div id="accionesUsuario" class="d-none align-items-center gap-2">
 
                             <span
-                                class="badge text-bg-dark ms-1"
-                                id="contadorCarrito">
-
-                                0
-
+                                id="nombreUsuario"
+                                class="text-levelup-green fw-bold">
                             </span>
 
+                            <button
+                                id="btnCerrarSesion"
+                                class="btn btn-outline-light">
+                                Cerrar sesión
+                            </button>
+
+                        </div>
+
+                        <!-- Carrito -->
+                        <a href="carrito.html" class="btn btn-levelup">
+                            Carrito
                         </a>
 
                     </div>
@@ -383,6 +386,7 @@
 
 
     <!-- JavaScript -->
+     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/catalogo.js"></script>
 
 </body>

@@ -98,16 +98,44 @@
                     </ul>
 
                     <!-- Acciones -->
-                    <div class="d-flex gap-2">
+                    <div class="d-flex align-items-center gap-2">
 
-                        <a
-                            href="pages/login.html"
-                            class="btn btn-outline-light">
+                        <!-- Usuario NO autenticado -->
+                        <div id="accionesInvitado" class="d-flex gap-2">
 
-                            Iniciar sesión
+                            <a
+                                href="pages/login.html"
+                                class="btn btn-outline-light">
 
-                        </a>
+                                Iniciar sesión
 
+                            </a>
+
+                        </div>
+
+
+                        <!-- Usuario autenticado -->
+                        <div
+                            id="accionesUsuario"
+                            class="d-none align-items-center gap-2">
+
+                            <span
+                                id="nombreUsuario"
+                                class="text-levelup-green fw-bold">
+                            </span>
+
+                            <button
+                                id="btnCerrarSesion"
+                                class="btn btn-outline-light">
+
+                                Cerrar sesión
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- Carrito siempre visible -->
                         <a
                             href="pages/carrito.html"
                             class="btn btn-levelup">
@@ -115,6 +143,8 @@
                             Carrito
 
                         </a>
+
+                    </div>
 
                     </div>
 
@@ -164,6 +194,7 @@
 
                         <a
                             href="pages/registro.html"
+                            id="btnCrearCuenta"
                             class="btn btn-outline-light btn-lg">
 
                             Crear cuenta
