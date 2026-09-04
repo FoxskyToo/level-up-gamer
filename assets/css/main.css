@@ -175,10 +175,22 @@ h6,
 ========================= */
 
 .levelup-panel {
-    background-color: var(--color-superficie);
-    border: 1px solid var(--color-borde);
+    background:
+        linear-gradient(
+            145deg,
+            var(--color-superficie),
+            #101820
+        );
+
+    border:
+        1px solid rgba(30, 144, 255, 0.25);
+
     border-radius: 15px;
+
     color: var(--color-texto);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -187,55 +199,99 @@ h6,
 ========================= */
 
 .form-label {
-    color: var(--color-texto);
+    color: var(--color-texto-secundario);
+    font-weight: 500;
 }
 
 .form-control,
 .form-select {
-    background-color: var(--color-superficie-hover);
+    background-color: #101820;
     color: var(--color-texto);
-    border-color: var(--color-borde-suave);
+
+    border:
+        1px solid var(--color-borde-suave);
+
+    min-height: 44px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+textarea.form-control {
+    min-height: auto;
 }
 
 .form-control::placeholder {
-    color: #9a9a9a;
+    color: #8e98a3;
+}
+
+.form-control:hover,
+.form-select:hover {
+    border-color:
+        rgba(30, 144, 255, 0.65);
 }
 
 .form-control:focus,
 .form-select:focus {
-    background-color: var(--color-superficie-hover);
+    background-color: #101820;
     color: var(--color-texto);
+
     border-color: var(--color-azul);
 
     box-shadow:
-        0 0 0 0.2rem rgba(30, 144, 255, 0.2);
+        0 0 0 0.2rem rgba(30, 144, 255, 0.15);
 }
 
 .form-select option {
-    background-color: var(--color-superficie-hover);
+    background-color: #101820;
     color: var(--color-texto);
 }
-
 
 /* =========================
    TABLAS
 ========================= */
 
 .table {
-    --bs-table-bg: var(--color-superficie);
+    --bs-table-bg: transparent;
     --bs-table-color: var(--color-texto);
     --bs-table-border-color: var(--color-borde);
+
+    margin-bottom: 0;
 }
 
 .table thead th {
-    color: var(--color-verde);
-    border-bottom-color: var(--color-borde-suave);
+    background-color:
+        rgba(30, 144, 255, 0.12);
+
+    color: var(--color-azul);
+
+    border-bottom:
+        2px solid var(--color-azul);
+
+    font-weight: 700;
+    padding: 14px;
 }
 
 .table tbody td {
-    color: var(--color-texto);
+    color: var(--color-texto-secundario);
+    padding: 14px;
+
+    vertical-align: middle;
+
+    transition:
+        background-color 0.2s ease;
 }
 
+.table tbody tr:hover td {
+    background-color:
+        rgba(30, 144, 255, 0.07);
+}
+
+.table tbody td:first-child {
+    color: var(--color-verde);
+    font-weight: 600;
+}
 
 /* =========================
    PRODUCTOS
@@ -293,6 +349,27 @@ h6,
     color: var(--color-verde);
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
+}
+/* =========================
+   TITULOS DE SECCION
+========================= */
+
+.section-title {
+    color: var(--color-azul);
+    font-weight: 600;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+
+    width: 55px;
+    height: 3px;
+
+    margin-top: 10px;
+
+    background-color: var(--color-verde);
+    border-radius: 10px;
 }
 
 
