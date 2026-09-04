@@ -1,539 +1,390 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Catálogo | Level-Up Gamer</title>
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    >
 
-    <!-- Fuentes solicitadas en el PDF -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet"
+    >
 
-    <style>
-        :root {
-            --negro: #000000;
-            --azul: #1E90FF;
-            --verde: #39FF14;
-            --blanco: #FFFFFF;
-            --gris: #D3D3D3;
-        }
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 
-        body {
-            background: var(--negro);
-            color: var(--blanco);
-            font-family: 'Roboto', sans-serif;
-        }
-
-        h1, h2, h3, h4, .navbar-brand {
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .navbar {
-            background: #050505;
-            border-bottom: 1px solid rgba(30, 144, 255, .35);
-        }
-
-        .navbar-brand {
-            color: var(--verde) !important;
-            letter-spacing: 1px;
-        }
-
-        .nav-link {
-            color: var(--gris) !important;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--azul) !important;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #050505, #07111c);
-            border-bottom: 1px solid rgba(57, 255, 20, .2);
-        }
-
-        .hero-title {
-            color: var(--verde);
-        }
-
-        .text-secondary-custom {
-            color: var(--gris) !important;
-        }
-
-        .btn-levelup {
-            background: var(--azul);
-            border-color: var(--azul);
-            color: white;
-            font-weight: 700;
-        }
-
-        .btn-levelup:hover {
-            background: #006dcc;
-            border-color: #006dcc;
-            color: white;
-        }
-
-        .btn-neon {
-            background: var(--verde);
-            color: #000;
-            font-weight: 700;
-            border: none;
-        }
-
-        .btn-neon:hover {
-            background: #24d90d;
-            color: #000;
-        }
-
-        .filter-box {
-            background: #0b0b0b;
-            border: 1px solid #222;
-            border-radius: 15px;
-        }
-
-        .form-control,
-        .form-select {
-            background: #111;
-            color: white;
-            border-color: #333;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            background: #111;
-            color: white;
-            border-color: var(--azul);
-            box-shadow: 0 0 0 .2rem rgba(30, 144, 255, .15);
-        }
-
-        .form-control::placeholder {
-            color: #888;
-        }
-
-        .product-card {
-            background: #0d0d0d;
-            border: 1px solid #252525;
-            border-radius: 15px;
-            height: 100%;
-            transition: .25s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--azul);
-            box-shadow: 0 0 20px rgba(30, 144, 255, .15);
-        }
-
-        .product-image {
-            height: 190px;
-            background: #151515;
-            border-radius: 14px 14px 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .category-badge {
-            background: rgba(30, 144, 255, .15);
-            color: var(--azul);
-            border: 1px solid rgba(30, 144, 255, .35);
-        }
-
-        .price {
-            color: var(--verde);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-        }
-
-        .empty-catalog {
-            min-height: 300px;
-            border: 1px dashed #333;
-            border-radius: 15px;
-            background: #080808;
-        }
-
-        footer {
-            border-top: 1px solid #222;
-            color: var(--gris);
-        }
-    </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="catalogo.html">LEVEL-UP GAMER</a>
+    <!-- HEADER -->
+    <header>
 
-        <button class="navbar-toggler bg-dark" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#menuPrincipal">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary">
 
-        <div class="collapse navbar-collapse" id="menuPrincipal">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item">
-                    <a class="nav-link active" href="catalogo.html">Catálogo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="productos.html">Productos</a>
-                </li>
-                <li class="nav-item ms-lg-3">
-                    <button class="btn btn-levelup btn-sm" id="btnCarrito">
-                        Carrito <span class="badge text-bg-light" id="contadorCarrito">0</span>
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+            <div class="container">
 
-<!-- HERO -->
-<header class="hero py-5">
-    <div class="container py-4">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <h1 class="display-5 fw-bold hero-title">CATÁLOGO GAMER</h1>
-                <p class="lead text-secondary-custom mb-4">
-                    Explora productos para gamers y encuentra todo lo que necesitas
-                    para mejorar tu experiencia de juego.
-                </p>
-                <a href="productos.html" class="btn btn-neon">
-                    Gestionar productos
+                <a
+                    class="navbar-brand d-flex align-items-center gap-2"
+                    href="../index.html">
+
+                    <img
+                        src="../assets/img/logo/logo-level-up.png"
+                        alt="Level-Up Gamer"
+                        class="navbar-logo">
+
+                    <span class="fw-bold">
+                        LEVEL-UP GAMER
+                    </span>
+
                 </a>
-            </div>
-        </div>
-    </div>
-</header>
 
-<!-- CATÁLOGO -->
-<main class="container py-5">
 
-    <!-- FILTROS -->
-    <section class="filter-box p-4 mb-5">
-        <div class="row g-3 align-items-end">
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarLevelUp"
+                    aria-controls="navbarLevelUp"
+                    aria-expanded="false"
+                    aria-label="Abrir menú">
 
-            <div class="col-md-5">
-                <label for="buscar" class="form-label">Buscar producto</label>
-                <input type="text" id="buscar" class="form-control"
-                       placeholder="Ej: mouse gamer, consola...">
-            </div>
+                    <span class="navbar-toggler-icon"></span>
 
-            <div class="col-md-4">
-                <label for="categoria" class="form-label">Categoría</label>
-                <select id="categoria" class="form-select">
-                    <option value="">Todas las categorías</option>
-                    <option value="Juegos de Mesa">Juegos de Mesa</option>
-                    <option value="Accesorios">Accesorios</option>
-                    <option value="Consolas">Consolas</option>
-                    <option value="Computadores Gamers">Computadores Gamers</option>
-                    <option value="Sillas Gamers">Sillas Gamers</option>
-                    <option value="Mouse">Mouse</option>
-                    <option value="Mousepad">Mousepad</option>
-                    <option value="Poleras Personalizadas">Poleras Personalizadas</option>
-                    <option value="Polerones Gamers Personalizados">Polerones Gamers Personalizados</option>
-                    <option value="Servicio Técnico">Servicio Técnico</option>
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <button class="btn btn-levelup w-100" onclick="cargarProductos()">
-                    Aplicar filtros
                 </button>
-            </div>
 
-        </div>
-    </section>
 
-    <!-- PRODUCTOS -->
-    <section>
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="mb-1">Productos</h2>
-                <p class="text-secondary-custom mb-0">
-                    Productos disponibles en Level-Up Gamer
-                </p>
-            </div>
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarLevelUp">
 
-            <span class="badge category-badge p-2" id="cantidadProductos">
-                0 productos
-            </span>
-        </div>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <div id="contenedorProductos" class="row g-4">
-            <!-- Los productos se cargarán automáticamente desde localStorage -->
-        </div>
-    </section>
+                        <li class="nav-item">
 
-</main>
+                            <a
+                                class="nav-link"
+                                href="../index.html">
 
-<!-- FOOTER -->
-<footer class="py-4 mt-5">
-    <div class="container text-center">
-        <p class="mb-1">LEVEL-UP GAMER</p>
-        <small>
-            Tienda online para gamers en Chile | Despachos a todo el país
-        </small>
-    </div>
-</footer>
+                                Inicio
 
-<!-- MODAL CARRITO -->
-<div class="modal fade" id="modalCarrito" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white">
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title">Carrito de compras</h5>
-                <button type="button" class="btn-close btn-close-white"
-                        data-bs-dismiss="modal"></button>
-            </div>
+                            </a>
 
-            <div class="modal-body">
-                <div id="contenidoCarrito"></div>
-            </div>
+                        </li>
 
-            <div class="modal-footer border-secondary">
-                <strong class="me-auto">
-                    Total: $<span id="totalCarrito">0</span> CLP
-                </strong>
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-                    Cerrar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+                        <li class="nav-item">
 
-<script>
-    /*
-     * CATÁLOGO
-     * Los productos se obtienen desde localStorage.
-     * productos.html será el encargado de agregarlos/modificarlos/eliminarlos.
-     */
+                            <a
+                                class="nav-link active"
+                                href="catalogo.html">
 
-    let productos = JSON.parse(localStorage.getItem("productosLevelUp")) || [];
-    let carrito = JSON.parse(localStorage.getItem("carritoLevelUp")) || [];
+                                Productos
 
-    function formatoPrecio(precio) {
-        return Number(precio).toLocaleString("es-CL");
-    }
+                            </a>
 
-    function escaparHTML(texto) {
-        const div = document.createElement("div");
-        div.textContent = texto ?? "";
-        return div.innerHTML;
-    }
+                        </li>
 
-    function cargarProductos() {
-        productos = JSON.parse(localStorage.getItem("productosLevelUp")) || [];
 
-        const textoBusqueda = document.getElementById("buscar").value
-            .toLowerCase()
-            .trim();
+                        <li class="nav-item">
 
-        const categoriaSeleccionada =
-            document.getElementById("categoria").value;
+                            <a
+                                class="nav-link"
+                                href="comunidad.html">
 
-        const productosFiltrados = productos.filter(producto => {
-            const coincideTexto =
-                producto.nombre.toLowerCase().includes(textoBusqueda) ||
-                producto.codigo.toLowerCase().includes(textoBusqueda);
+                                Comunidad
 
-            const coincideCategoria =
-                !categoriaSeleccionada ||
-                producto.categoria === categoriaSeleccionada;
+                            </a>
 
-            return coincideTexto && coincideCategoria;
-        });
+                        </li>
 
-        const contenedor =
-            document.getElementById("contenedorProductos");
 
-        document.getElementById("cantidadProductos").textContent =
-            `${productosFiltrados.length} producto${productosFiltrados.length !== 1 ? "s" : ""}`;
+                        <li class="nav-item">
 
-        if (productosFiltrados.length === 0) {
-            contenedor.innerHTML = `
-                <div class="col-12">
-                    <div class="empty-catalog d-flex flex-column
-                                justify-content-center align-items-center text-center p-5">
-                        <h3 class="mb-3">Catálogo sin productos</h3>
-                        <p class="text-secondary-custom mb-4">
-                            Actualmente no existen productos registrados.
-                            Puedes agregarlos desde la sección Productos.
-                        </p>
-                        <a href="productos.html" class="btn btn-neon">
-                            Ir a Productos
+                            <a
+                                class="nav-link"
+                                href="eventos.html">
+
+                                Eventos
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a
+                                class="nav-link"
+                                href="soporte.html">
+
+                                Soporte
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+
+                    <div class="d-flex gap-2">
+
+                        <a
+                            href="login.html"
+                            class="btn btn-outline-light">
+
+                            Iniciar sesión
+
                         </a>
-                    </div>
-                </div>
-            `;
-            return;
-        }
 
-        contenedor.innerHTML = productosFiltrados.map(producto => `
-            <div class="col-sm-6 col-lg-4 col-xl-3">
-                <div class="product-card overflow-hidden">
 
-                    <div class="product-image">
-                        ${
-                            producto.imagen
-                            ? `<img src="${escaparHTML(producto.imagen)}"
-                                    alt="${escaparHTML(producto.nombre)}">`
-                            : `<span>Sin imagen</span>`
-                        }
-                    </div>
+                        <a
+                            href="carrito.html"
+                            class="btn btn-levelup">
 
-                    <div class="p-3">
-                        <span class="badge category-badge mb-2">
-                            ${escaparHTML(producto.categoria)}
-                        </span>
+                            Carrito
 
-                        <h5 class="mt-2">
-                            ${escaparHTML(producto.nombre)}
-                        </h5>
+                            <span
+                                class="badge text-bg-dark ms-1"
+                                id="contadorCarrito">
 
-                        <p class="small text-secondary-custom">
-                            Código: ${escaparHTML(producto.codigo)}
-                        </p>
+                                0
 
-                        <p class="small text-secondary-custom">
-                            ${escaparHTML(producto.descripcion || "Sin descripción.")}
-                        </p>
-
-                        <div class="d-flex justify-content-between
-                                    align-items-center mt-3">
-                            <span class="price">
-                                $${formatoPrecio(producto.precio)}
                             </span>
 
-                            <button class="btn btn-sm btn-levelup"
-                                    onclick="agregarAlCarrito('${escaparHTML(producto.codigo)}')">
-                                Agregar
-                            </button>
-                        </div>
+                        </a>
+
                     </div>
 
                 </div>
+
             </div>
-        `).join("");
-    }
 
-    function agregarAlCarrito(codigo) {
-        const producto = productos.find(p => p.codigo === codigo);
+        </nav>
 
-        if (!producto) return;
+    </header>
 
-        const existente = carrito.find(p => p.codigo === codigo);
 
-        if (existente) {
-            existente.cantidad++;
-        } else {
-            carrito.push({
-                ...producto,
-                cantidad: 1
-            });
-        }
+    <!-- HERO -->
+    <section class="page-hero py-5">
 
-        localStorage.setItem(
-            "carritoLevelUp",
-            JSON.stringify(carrito)
-        );
+        <div class="container py-3">
 
-        actualizarContadorCarrito();
-    }
+            <h1 class="display-5 fw-bold page-hero-title">
+                Catálogo Gamer
+            </h1>
 
-    function actualizarContadorCarrito() {
-        const cantidad = carrito.reduce(
-            (total, producto) => total + producto.cantidad,
-            0
-        );
+            <p class="lead text-secondary mb-0">
+                Explora nuestros productos y encuentra todo
+                lo que necesitas para llevar tu experiencia
+                gamer al siguiente nivel.
+            </p>
 
-        document.getElementById("contadorCarrito").textContent = cantidad;
-    }
+        </div>
 
-    function mostrarCarrito() {
-        carrito = JSON.parse(localStorage.getItem("carritoLevelUp")) || [];
+    </section>
 
-        const contenido =
-            document.getElementById("contenidoCarrito");
 
-        if (carrito.length === 0) {
-            contenido.innerHTML = `
-                <div class="text-center py-4">
-                    <p class="text-secondary-custom mb-0">
-                        El carrito está vacío.
+    <!-- CATÁLOGO -->
+    <main class="container py-5">
+
+
+        <!-- FILTROS -->
+        <section class="levelup-panel p-4 mb-5">
+
+            <div class="row g-3 align-items-end">
+
+
+                <div class="col-md-5">
+
+                    <label
+                        for="buscar"
+                        class="form-label">
+
+                        Buscar producto
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="buscar"
+                        class="form-control"
+                        placeholder="Ej: mouse gamer, consola...">
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <label
+                        for="categoria"
+                        class="form-label">
+
+                        Categoría
+
+                    </label>
+
+                    <select
+                        id="categoria"
+                        class="form-select">
+
+                        <option value="">
+                            Todas las categorías
+                        </option>
+
+                        <option value="Juegos de Mesa">
+                            Juegos de Mesa
+                        </option>
+
+                        <option value="Accesorios">
+                            Accesorios
+                        </option>
+
+                        <option value="Consolas">
+                            Consolas
+                        </option>
+
+                        <option value="Computadores Gamers">
+                            Computadores Gamers
+                        </option>
+
+                        <option value="Sillas Gamers">
+                            Sillas Gamers
+                        </option>
+
+                        <option value="Mouse">
+                            Mouse
+                        </option>
+
+                        <option value="Mousepad">
+                            Mousepad
+                        </option>
+
+                        <option value="Poleras Personalizadas">
+                            Poleras Personalizadas
+                        </option>
+
+                        <option value="Polerones Gamers Personalizados">
+                            Polerones Gamers Personalizados
+                        </option>
+
+                        <option value="Servicio Técnico">
+                            Servicio Técnico
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <button
+                        class="btn btn-levelup-blue w-100"
+                        id="btnFiltrar">
+
+                        Aplicar filtros
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTOS -->
+        <section>
+
+            <div
+                class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h2 class="mb-1">
+                        Productos
+                    </h2>
+
+                    <p class="text-secondary mb-0">
+                        Productos disponibles en Level-Up Gamer.
                     </p>
+
                 </div>
-            `;
-            document.getElementById("totalCarrito").textContent = "0";
-            return;
-        }
 
-        let total = 0;
 
-        contenido.innerHTML = carrito.map(producto => {
-            const subtotal =
-                Number(producto.precio) * producto.cantidad;
+                <span
+                    class="badge bg-primary p-2"
+                    id="cantidadProductos">
 
-            total += subtotal;
+                    0 productos
 
-            return `
-                <div class="d-flex justify-content-between
-                            align-items-center border-bottom
-                            border-secondary py-3">
-                    <div>
-                        <strong>${escaparHTML(producto.nombre)}</strong>
-                        <div class="small text-secondary">
-                            Cantidad: ${producto.cantidad}
-                        </div>
-                    </div>
+                </span>
 
-                    <span>
-                        $${formatoPrecio(subtotal)}
+            </div>
+
+
+            <div
+                id="contenedorProductos"
+                class="row g-4">
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="border-top border-secondary py-4 mt-5">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6 text-center text-md-start">
+
+                    <p class="mb-0 text-secondary">
+                        © 2026 Level-Up Gamer
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+
+                    <span class="text-secondary">
+                        Explora, juega y gana con nosotros.
                     </span>
+
                 </div>
-            `;
-        }).join("");
 
-        document.getElementById("totalCarrito").textContent =
-            formatoPrecio(total);
-    }
+            </div>
 
-    document.getElementById("btnCarrito").addEventListener("click", () => {
-        mostrarCarrito();
+        </div>
 
-        const modal =
-            new bootstrap.Modal(
-                document.getElementById("modalCarrito")
-            );
+    </footer>
 
-        modal.show();
-    });
 
-    document.getElementById("buscar").addEventListener("input", cargarProductos);
-    document.getElementById("categoria").addEventListener("change", cargarProductos);
+    <!-- Bootstrap -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
 
-    cargarProductos();
-    actualizarContadorCarrito();
-</script>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/catalogo.js"></script>
 
 </body>
+
 </html>
