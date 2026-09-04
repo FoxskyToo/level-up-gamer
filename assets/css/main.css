@@ -42,3 +42,19 @@ h6,
 .min-vh-75 {
     min-height: 75vh;
 }
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar-brand {
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-verde);
+}
