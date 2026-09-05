@@ -447,3 +447,35 @@ footer small {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* =========================
+   COMUNIDAD
+========================= */
+
+.community-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: 15px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.community-card:hover {
+    transform: translateY(-5px);
+
+    border-color: var(--color-azul);
+
+    box-shadow:
+        0 0 20px rgba(30, 144, 255, 0.15);
+}
+
+.community-badge {
+    background-color: rgba(57, 255, 20, 0.12);
+    color: var(--color-verde);
+
+    border:
+        1px solid rgba(57, 255, 20, 0.35);
+}
