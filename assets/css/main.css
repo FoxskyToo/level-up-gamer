@@ -479,3 +479,176 @@ footer small {
     border:
         1px solid rgba(57, 255, 20, 0.35);
 }
+
+/* =========================
+   EVENTOS
+========================= */
+
+.event-map-placeholder {
+    min-height: 320px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(30, 144, 255, 0.08),
+            rgba(57, 255, 20, 0.05)
+        );
+
+    border:
+        1px dashed rgba(30, 144, 255, 0.5);
+
+    border-radius: 15px;
+}
+
+
+.event-card {
+    background-color: var(--color-superficie);
+
+    border:
+        1px solid var(--color-borde);
+
+    border-radius: 15px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.event-card:hover {
+    transform: translateY(-5px);
+
+    border-color: var(--color-verde);
+
+    box-shadow:
+        0 0 20px rgba(57, 255, 20, 0.12);
+}
+
+
+.event-region-badge {
+    background-color:
+        rgba(30, 144, 255, 0.15);
+
+    color: var(--color-azul);
+
+    border:
+        1px solid rgba(30, 144, 255, 0.4);
+}
+
+
+.event-points {
+    color: var(--color-verde);
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-weight: 700;
+}
+
+/* =========================
+   SOPORTE
+========================= */
+
+.support-highlight {
+    background-color: rgba(57, 255, 20, 0.06);
+
+    border:
+        1px solid rgba(57, 255, 20, 0.25);
+
+    border-radius: 12px;
+}
+
+
+.support-accordion {
+    background-color: var(--color-superficie);
+    border-color: var(--color-borde);
+    color: var(--color-texto);
+}
+
+
+.support-accordion .accordion-button {
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    font-weight: 600;
+}
+
+
+.support-accordion .accordion-button:not(.collapsed) {
+    background-color:
+        rgba(30, 144, 255, 0.12);
+
+    color: var(--color-azul);
+
+    box-shadow: none;
+}
+
+
+.support-accordion .accordion-button:focus {
+    border-color: var(--color-azul);
+
+    box-shadow:
+        0 0 0 0.2rem rgba(30, 144, 255, 0.12);
+}
+
+
+.support-accordion .accordion-body {
+    background-color: var(--color-superficie);
+    color: var(--color-texto-secundario);
+}
+
+/* =========================
+   DETALLE DE PRODUCTO
+========================= */
+
+.product-detail-image {
+    min-height: 350px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-superficie-hover);
+
+    border:
+        1px solid var(--color-borde);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+}
+
+
+.product-detail-image img {
+    width: 100%;
+    max-height: 450px;
+
+    object-fit: contain;
+}
+
+
+/* =========================
+   RESEÑAS
+========================= */
+
+.review-item {
+    border-bottom:
+        1px solid var(--color-borde);
+}
+
+
+.review-item:last-child {
+    border-bottom: 0;
+}
+
+
+.review-score {
+    color: var(--color-verde);
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+}
