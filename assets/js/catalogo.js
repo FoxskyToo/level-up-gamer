@@ -210,14 +210,21 @@ function mostrarProductos(productosFiltrados) {
 
                                 </span>
 
+                                <div class="d-flex gap-2">
 
-                                <button
-                                    class="btn btn-sm btn-levelup-blue"
-                                    onclick="agregarAlCarrito('${escaparHTML(producto.codigo)}')">
+                                    <a
+                                        href="producto-detalle.html?codigo=${encodeURIComponent(producto.codigo)}"
+                                        class="btn btn-sm btn-outline-light">
+                                        Ver detalle
+                                    </a>
 
-                                    Agregar
+                                    <button
+                                        class="btn btn-sm btn-levelup-blue"
+                                        onclick="agregarAlCarrito('${escaparHTML(producto.codigo)}')">
+                                        Agregar
+                                    </button>
 
-                                </button>
+                                </div>
 
                             </div>
 
@@ -303,9 +310,12 @@ function actualizarContadorCarrito() {
         );
 
 
-    document
-        .getElementById("contadorCarrito")
-        .textContent = cantidad;
+    const contadorCarrito =
+        document.getElementById("contadorCarrito");
+
+    if (contadorCarrito) {
+        contadorCarrito.textContent = cantidad;
+    }
 
 }
 
