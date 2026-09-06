@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Soporte | Level-Up Gamer</title>
+
+    <!-- Bootstrap -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    >
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/variable.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary">
+
+            <div class="container">
+
+                <a
+                    class="navbar-brand d-flex align-items-center gap-2"
+                    href="../index.html">
+
+                    <img
+                        src="../assets/img/logo/logo-level-up.png"
+                        alt="Level-Up Gamer"
+                        class="navbar-logo">
+
+                    <span class="fw-bold">
+                        LEVEL-UP GAMER
+                    </span>
+
+                </a>
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarLevelUp"
+                    aria-controls="navbarLevelUp"
+                    aria-expanded="false"
+                    aria-label="Abrir menú">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarLevelUp">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">
+                                Inicio
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="catalogo.html">
+                                Productos
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="comunidad.html">
+                                Comunidad
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="eventos.html">
+                                Eventos
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="soporte.html">
+                                Soporte
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-2">
+
+                        <!-- Usuario sin sesión -->
+                        <div id="accionesInvitado" class="d-flex gap-2">
+
+                            <a
+                                href="login.html"
+                                class="btn btn-outline-light">
+
+                                Iniciar sesión
+
+                            </a>
+
+                        </div>
+
+                        <!-- Usuario con sesión -->
+                        <div
+                            id="accionesUsuario"
+                            class="d-none align-items-center gap-2">
+
+                            <a
+                                href="perfil.html"
+                                id="nombreUsuario"
+                                class="text-levelup-green fw-bold text-decoration-none">
+                            </a>
+
+                            <button
+                                id="btnCerrarSesion"
+                                class="btn btn-outline-light">
+
+                                Cerrar sesión
+
+                            </button>
+
+                        </div>
+
+                        <!-- Carrito -->
+                        <a
+                            href="carrito.html"
+                            class="btn btn-levelup">
+
+                            Carrito
+
+                            <span
+                                class="badge text-bg-dark ms-1"
+                                id="contadorCarrito">
+
+                                0
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="page-hero py-5">
+
+        <div class="container py-3">
+
+            <h1 class="display-5 fw-bold page-hero-title">
+                Soporte Técnico
+            </h1>
+
+            <p class="lead text-secondary mb-0">
+                ¿Necesitas ayuda? Nuestro equipo está disponible para orientarte.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTENIDO -->
+    <main class="container py-5">
+
+        <div class="row g-4">
+
+            <!-- WHATSAPP -->
+            <div class="col-lg-6">
+
+                <section class="levelup-panel p-4 p-md-5 h-100">
+
+                    <h2 class="section-title mb-4">
+                        Contactar por WhatsApp
+                    </h2>
+
+                    <p class="text-secondary">
+                        Si necesitas soporte técnico, ayuda con un producto o tienes alguna consulta,
+                        puedes comunicarte directamente con nuestro equipo.
+                    </p>
+
+                    <div class="support-highlight p-4 my-4">
+
+                        <h3 class="h5 text-levelup-green">
+                            Atención Level-Up Gamer
+                        </h3>
+
+                        <p class="text-secondary mb-0">
+                            Atención para consultas de productos, soporte técnico y orientación de compra.
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="btnWhatsapp"
+                        class="btn btn-levelup btn-lg">
+
+                        Contactar por WhatsApp
+
+                    </button>
+
+                </section>
+
+            </div>
+
+
+            <!-- FORMULARIO -->
+            <div class="col-lg-6">
+
+                <section class="levelup-panel p-4 p-md-5 h-100">
+
+                    <h2 class="section-title mb-4">
+                        Enviar una consulta
+                    </h2>
+
+                    <div
+                        id="mensajeSoporte"
+                        class="alert d-none"
+                        role="alert">
+                    </div>
+
+                    <form id="formSoporte">
+
+                        <div class="mb-3">
+
+                            <label
+                                for="nombreSoporte"
+                                class="form-label">
+
+                                Nombre
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombreSoporte"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label
+                                for="emailSoporte"
+                                class="form-label">
+
+                                Correo electrónico
+
+                            </label>
+
+                            <input
+                                type="email"
+                                id="emailSoporte"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label
+                                for="tipoConsulta"
+                                class="form-label">
+
+                                Tipo de consulta
+
+                            </label>
+
+                            <select
+                                id="tipoConsulta"
+                                class="form-select"
+                                required>
+
+                                <option value="">
+                                    Seleccionar...
+                                </option>
+
+                                <option value="Producto">
+                                    Consulta de producto
+                                </option>
+
+                                <option value="Compra">
+                                    Consulta de compra
+                                </option>
+
+                                <option value="Soporte técnico">
+                                    Soporte técnico
+                                </option>
+
+                                <option value="Otro">
+                                    Otro
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="mb-4">
+
+                            <label
+                                for="mensajeConsulta"
+                                class="form-label">
+
+                                Mensaje
+
+                            </label>
+
+                            <textarea
+                                id="mensajeConsulta"
+                                class="form-control"
+                                rows="5"
+                                placeholder="Describe tu consulta..."
+                                required>
+                            </textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-levelup-blue">
+
+                            Enviar consulta
+
+                        </button>
+
+                    </form>
+
+                </section>
+
+            </div>
+
+        </div>
+
+
+        <!-- PREGUNTAS FRECUENTES -->
+        <section class="mt-5">
+
+            <div class="mb-4">
+
+                <h2 class="section-title mb-2">
+                    Preguntas frecuentes
+                </h2>
+
+                <p class="text-secondary">
+                    Algunas respuestas rápidas que pueden ayudarte.
+                </p>
+
+            </div>
+
+
+            <div
+                class="accordion accordion-flush"
+                id="accordionSoporte">
+
+
+                <div class="accordion-item support-accordion">
+
+                    <h2 class="accordion-header">
+
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqUno">
+
+                            ¿Realizan despachos a todo Chile?
+
+                        </button>
+
+                    </h2>
+
+                    <div
+                        id="faqUno"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionSoporte">
+
+                        <div class="accordion-body">
+                            Sí. Level-Up Gamer opera como tienda online y realiza despachos a nivel nacional.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="accordion-item support-accordion">
+
+                    <h2 class="accordion-header">
+
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqDos">
+
+                            ¿Cómo funciona el descuento para usuarios Duoc?
+
+                        </button>
+
+                    </h2>
+
+                    <div
+                        id="faqDos"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionSoporte">
+
+                        <div class="accordion-body">
+                            Los usuarios registrados con correo Duoc pueden acceder al beneficio de descuento definido por Level-Up Gamer.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="accordion-item support-accordion">
+
+                    <h2 class="accordion-header">
+
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqTres">
+
+                            ¿Dónde puedo solicitar soporte técnico?
+
+                        </button>
+
+                    </h2>
+
+                    <div
+                        id="faqTres"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionSoporte">
+
+                        <div class="accordion-body">
+                            Puedes utilizar el botón de WhatsApp de esta página o enviar una consulta mediante el formulario.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="border-top border-secondary py-4 mt-5">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6 text-center text-md-start">
+
+                    <p class="mb-0 text-secondary">
+                        © 2026 Level-Up Gamer
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+
+                    <span class="text-secondary">
+                        Explora, juega y gana con nosotros.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bootstrap -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/soporte.js"></script>
+
+</body>
+
+</html>
