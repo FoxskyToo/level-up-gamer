@@ -55,6 +55,42 @@ function esCorreoDuoc(email) {
 
 }
 
+const PUNTOS_POR_REFERIDO = 500;
+
+
+function generarCodigoReferido(gamertag, email) {
+
+    let base =
+        gamertag
+            .trim()
+            .toUpperCase()
+            .replace(/[^A-Z0-9]/g, "");
+
+
+    /*
+     * Si el usuario no ingresó gamer tag,
+     * utilizamos la parte anterior al @ del correo.
+     */
+    if (!base) {
+
+        base =
+            email
+                .split("@")[0]
+                .toUpperCase()
+                .replace(/[^A-Z0-9]/g, "");
+
+    }
+
+
+    const numero =
+        Math.floor(
+            1000 + Math.random() * 9000
+        );
+
+
+    return `${base}${numero}`;
+}
+
 
 formRegistro.addEventListener(
     "submit",
@@ -177,6 +213,34 @@ formRegistro.addEventListener(
 
         }
 
+        /* Validar código de referido */
+
+        let usuarioReferente = null;
+
+
+        if (codigoReferido) {
+
+            usuarioReferente =
+                usuarios.find(
+                    usuario =>
+                        usuario.codigoReferidoPersonal &&
+                        usuario.codigoReferidoPersonal.toUpperCase() ===
+                        codigoReferido.toUpperCase()
+                );
+
+
+            if (!usuarioReferente) {
+
+                mostrarMensaje(
+                    "El código de referido ingresado no es válido.",
+                    "danger"
+                );
+
+                return;
+
+            }
+
+        }
 
         const usuario = {
 
@@ -192,13 +256,45 @@ formRegistro.addEventListener(
 
             password: password,
 
-            codigoReferido: codigoReferido,
+            /*
+            * Código que utilizó este usuario
+            * al registrarse.
+            */
+            codigoReferido:
+                codigoReferido.toUpperCase(),
+
+
+            /*
+            * Código propio para invitar
+            * a otras personas.
+            */
+            codigoReferidoPersonal:
+                generarCodigoReferido(
+                    gamertag,
+                    email
+                ),
+
+            /*
+            * Saldo inicial.
+            */
+            puntos:
+                0,
 
             descuentoDuoc:
                 esCorreoDuoc(email) ? 20 : 0
 
         };
 
+        /* Asignar puntos al usuario referente */
+
+        if (usuarioReferente) {
+
+            usuarioReferente.puntos =
+                Number(
+                    usuarioReferente.puntos || 0
+                ) + PUNTOS_POR_REFERIDO;
+
+        }
 
         usuarios.push(usuario);
 
