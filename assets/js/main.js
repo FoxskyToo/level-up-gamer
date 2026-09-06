@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    actualizarContadorCarritoGlobal();
+
     const usuarioSesion =
         JSON.parse(
             localStorage.getItem("usuarioSesionLevelUp")
@@ -116,3 +118,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+function actualizarContadorCarritoGlobal() {
+
+    const carrito =
+        JSON.parse(
+            localStorage.getItem("carritoLevelUp")
+        ) || [];
+
+
+    const cantidad =
+        carrito.reduce(
+            (total, producto) =>
+                total + Number(producto.cantidad || 0),
+            0
+        );
+
+
+    const contadorCarrito =
+        document.getElementById("contadorCarrito");
+
+
+    if (contadorCarrito) {
+        contadorCarrito.textContent = cantidad;
+    }
+
+}

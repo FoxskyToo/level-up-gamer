@@ -37,9 +37,13 @@ function escaparHTML(texto) {
 
 function mostrarCarrito() {
 
+    carrito =
+        JSON.parse(
+            localStorage.getItem("carritoLevelUp")
+        ) || [];
+
     const contenedor =
         document.getElementById("contenedorCarrito");
-
 
     if (carrito.length === 0) {
 
@@ -59,6 +63,7 @@ function mostrarCarrito() {
                     class="btn btn-levelup">
 
                     Ir al catálogo
+
                 </a>
 
             </div>
@@ -272,30 +277,53 @@ function vaciarCarrito() {
 
 function actualizarResumen() {
 
+    carrito =
+    JSON.parse(
+        localStorage.getItem("carritoLevelUp")
+    ) || [];
+
     const cantidad =
         carrito.reduce(
-
             (total, producto) =>
                 total + producto.cantidad,
-
             0
-
         );
 
 
-    const total =
+    const subtotal =
         carrito.reduce(
-
             (acumulado, producto) =>
                 acumulado +
                 (
                     Number(producto.precio) *
                     producto.cantidad
                 ),
-
             0
-
         );
+
+
+    const usuarioSesion =
+        JSON.parse(
+            localStorage.getItem("usuarioSesionLevelUp")
+        );
+
+
+    let descuento = 0;
+
+
+    if (
+        usuarioSesion &&
+        usuarioSesion.descuentoDuoc === 20
+    ) {
+
+        descuento =
+            Math.round(subtotal * 0.20);
+
+    }
+
+
+    const total =
+        subtotal - descuento;
 
 
     document
@@ -310,12 +338,37 @@ function actualizarResumen() {
 
     document
         .getElementById("subtotalCarrito")
-        .textContent = formatoPrecio(total);
+        .textContent =
+        formatoPrecio(subtotal);
+
+
+    document
+        .getElementById("descuentoCarrito")
+        .textContent =
+        formatoPrecio(descuento);
 
 
     document
         .getElementById("totalCarrito")
-        .textContent = formatoPrecio(total);
+        .textContent =
+        formatoPrecio(total);
+
+
+    const filaDescuento =
+        document.getElementById("filaDescuento");
+
+
+    if (descuento > 0) {
+
+        filaDescuento.classList.remove("d-none");
+        filaDescuento.classList.add("d-flex");
+
+    } else {
+
+        filaDescuento.classList.add("d-none");
+        filaDescuento.classList.remove("d-flex");
+
+    }
 
 }
 
@@ -333,27 +386,153 @@ function finalizarCompra() {
     }
 
 
+    const usuarioSesion =
+        JSON.parse(
+            localStorage.getItem("usuarioSesionLevelUp")
+        );
+
+
+    if (!usuarioSesion) {
+
+        const irLogin =
+            confirm(
+                "Debes iniciar sesión para finalizar la compra. ¿Deseas ir al inicio de sesión?"
+            );
+
+
+        if (irLogin) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        return;
+
+    }
+
+
+    const subtotal =
+        carrito.reduce(
+            (acumulado, producto) =>
+                acumulado +
+                (
+                    Number(producto.precio) *
+                    producto.cantidad
+                ),
+            0
+        );
+
+
+    let descuento = 0;
+
+
+    if (usuarioSesion.descuentoDuoc === 20) {
+
+        descuento =
+            Math.round(subtotal * 0.20);
+
+    }
+
+
+    const total =
+        subtotal - descuento;
+
+
+    const compras =
+        JSON.parse(
+            localStorage.getItem("comprasLevelUp")
+        ) || [];
+
+
+    const compra = {
+
+        id:
+            Date.now(),
+
+        usuarioEmail:
+            usuarioSesion.email,
+
+        fecha:
+            new Date().toISOString(),
+
+        productos:
+            carrito.map(producto => ({
+                codigo: producto.codigo,
+                nombre: producto.nombre,
+                categoria: producto.categoria,
+                precio: producto.precio,
+                cantidad: producto.cantidad
+            })),
+
+        subtotal:
+            subtotal,
+
+        descuento:
+            descuento,
+
+        total:
+            total
+
+    };
+
+
+    compras.push(compra);
+
+
+    localStorage.setItem(
+        "comprasLevelUp",
+        JSON.stringify(compras)
+    );
+
+
+    carrito = [];
+
+
+    localStorage.setItem(
+        "carritoLevelUp",
+        JSON.stringify(carrito)
+    );
+
+
+    mostrarCarrito();
+
+
     alert(
-        "Compra preparada correctamente. La etapa de pago se implementará posteriormente."
+        "Compra realizada correctamente."
     );
 
 }
 
+/* =========================
+   EVENTOS
+========================= */
 
-document
-    .getElementById("btnVaciarCarrito")
-    .addEventListener(
+const btnVaciarCarrito =
+    document.getElementById("btnVaciarCarrito");
+
+if (btnVaciarCarrito) {
+    btnVaciarCarrito.addEventListener(
         "click",
         vaciarCarrito
     );
+}
 
 
-document
-    .getElementById("btnFinalizarCompra")
-    .addEventListener(
+const btnFinalizarCompra =
+    document.getElementById("btnFinalizarCompra");
+
+if (btnFinalizarCompra) {
+    btnFinalizarCompra.addEventListener(
         "click",
         finalizarCompra
     );
+}
 
+
+/* =========================
+   INICIALIZACION
+========================= */
 
 mostrarCarrito();
