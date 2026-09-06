@@ -1,8 +1,6 @@
 (function inicializarProductos() {
     const claveInicializacion = "productosInicialesLevelUpV1";
 
-    if (localStorage.getItem(claveInicializacion)) return;
-
     const productosIniciales = [
         {
             "codigo": "JM001",
@@ -18,7 +16,7 @@
             "categoria": "Juegos de Mesa",
             "precio": 24990,
             "imagen": "../assets/img/productos/Juegos de Mesa/monosinfondo.png",
-            "descripcion": "Juego de mesa de propiedades y negociaci?n."
+            "descripcion": "Juego de mesa de propiedades y negociación."
         },
         {
             "codigo": "JM003",
@@ -34,23 +32,23 @@
             "categoria": "Accesorios",
             "precio": 19990,
             "imagen": "../assets/img/productos/Accesorios/lucesXsinfondo.png",
-            "descripcion": "Iluminaci?n decorativa para tu espacio de juego."
+            "descripcion": "Iluminación decorativa para tu espacio de juego."
         },
         {
             "codigo": "AC002",
-            "nombre": "Soporte para micr?fono",
+            "nombre": "Soporte para micrófono",
             "categoria": "Accesorios",
             "precio": 14990,
             "imagen": "../assets/img/productos/Accesorios/apoyamicsinfondo.png",
-            "descripcion": "Complemento para organizar tu micr?fono en el escritorio."
+            "descripcion": "Complemento para organizar tu micrófono en el escritorio."
         },
         {
             "codigo": "AC003",
-            "nombre": "Soporte para aud?fonos",
+            "nombre": "Soporte para audífonos",
             "categoria": "Accesorios",
             "precio": 12990,
             "imagen": "../assets/img/productos/Accesorios/apoyaaudisinfondo.png",
-            "descripcion": "Mant?n tus aud?fonos a mano y tu escritorio ordenado."
+            "descripcion": "Mantén tus audífonos a mano y tu escritorio ordenado."
         },
         {
             "codigo": "CO001",
@@ -82,7 +80,7 @@
             "categoria": "Computadores Gamers",
             "precio": 2999990,
             "imagen": "../assets/img/productos/Computadores Gamers/compu1.png",
-            "descripcion": "Torre gamer con dise?o negro e iluminaci?n RGB."
+            "descripcion": "Torre gamer con diseño negro e iluminación RGB."
         },
         {
             "codigo": "CG002",
@@ -90,7 +88,7 @@
             "categoria": "Computadores Gamers",
             "precio": 699990,
             "imagen": "../assets/img/productos/Computadores Gamers/compu2.png",
-            "descripcion": "Torre gamer con panel transparente e iluminaci?n multicolor."
+            "descripcion": "Torre gamer con panel transparente e iluminación multicolor."
         },
         {
             "codigo": "CG003",
@@ -98,7 +96,7 @@
             "categoria": "Computadores Gamers",
             "precio": 899990,
             "imagen": "../assets/img/productos/Computadores Gamers/compu3.png",
-            "descripcion": "Torre gamer Kronos con iluminaci?n RGB."
+            "descripcion": "Torre gamer Kronos con iluminación RGB."
         },
         {
             "codigo": "SG001",
@@ -130,7 +128,7 @@
             "categoria": "Mouse",
             "precio": 29990,
             "imagen": "../assets/img/productos/Mouse/Mouse1.png",
-            "descripcion": "Mouse Logitech con cable e iluminaci?n."
+            "descripcion": "Mouse Logitech con cable e iluminación."
         },
         {
             "codigo": "MS002",
@@ -154,7 +152,7 @@
             "categoria": "Mousepad",
             "precio": 14990,
             "imagen": "../assets/img/productos/Mousepad/mousepad1.png",
-            "descripcion": "Mousepad negro con iluminaci?n en los bordes."
+            "descripcion": "Mousepad negro con iluminación en los bordes."
         },
         {
             "codigo": "MP002",
@@ -162,7 +160,7 @@
             "categoria": "Mousepad",
             "precio": 12990,
             "imagen": "../assets/img/productos/Mousepad/Mousepad2.png",
-            "descripcion": "Mousepad extendido con dise?o rojo y negro."
+            "descripcion": "Mousepad extendido con diseño rojo y negro."
         },
         {
             "codigo": "MP003",
@@ -170,12 +168,45 @@
             "categoria": "Mousepad",
             "precio": 11990,
             "imagen": "../assets/img/productos/Mousepad/Mousepad3.png",
-            "descripcion": "Mousepad extendido con dise?o de mapa del mundo."
+            "descripcion": "Mousepad extendido con diseño de mapa del mundo."
         }
     ];
 
     const productosGuardados =
         JSON.parse(localStorage.getItem("productosLevelUp")) || [];
+
+    // Reparar solo variantes dañadas conocidas de las descripciones iniciales.
+    // No sobrescribir descripciones personalizadas ni recuperar productos eliminados.
+    let descripcionesCorregidas = false;
+    productosGuardados.forEach(producto => {
+        const inicial = productosIniciales.find(
+            item => item.codigo.toLowerCase() === producto.codigo.toLowerCase()
+        );
+        if (!inicial) return;
+
+        const descripcion = inicial.descripcion;
+        const variantesDanadas = [
+            descripcion.replace(/[^\x00-\x7F]/g, "?"),
+            descripcion.replace(/[^\x00-\x7F]/g, "\uFFFD"),
+            new TextDecoder("windows-1252").decode(
+                new TextEncoder().encode(descripcion)
+            )
+        ];
+
+        if (producto.descripcion !== descripcion &&
+            variantesDanadas.includes(producto.descripcion)) {
+            producto.descripcion = descripcion;
+            descripcionesCorregidas = true;
+        }
+    });
+
+    if (localStorage.getItem(claveInicializacion)) {
+        if (descripcionesCorregidas) {
+            localStorage.setItem("productosLevelUp", JSON.stringify(productosGuardados));
+        }
+        return;
+    }
+
     const codigosExistentes = new Set(
         productosGuardados.map(producto => producto.codigo.toLowerCase())
     );
