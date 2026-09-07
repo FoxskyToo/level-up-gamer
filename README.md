@@ -1,1 +1,3 @@
-# level-up-gamer
+Level-UpGamer es una tienda online dedicada a la venta de productos para gamers en chile. La platagorna permite a los usuarios explorar un catálogo de productos como consolas, juegos, accesorios, computadores, sillas gamer y merch, entre otros.
+
+Los clientes pueden navegar por las distintas categorías, revisar los productos disponibles, conocer sus precios y agregarlos al carrito de compras, además, la página cuenta con opciones de registro, inicio de sesión y contacto, ofreciendo una experiencia de compra simple, accesible a la comunidad gamer con nuestro diseño inspirado en la identidad visual de Level-upgamer, utilizando la estética gamer, colores llamativos y nuestro característico logo.
